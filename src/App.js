@@ -9,9 +9,7 @@ import {
 } from "react-router-dom";
 import BestBooks from './BestBooks'
 import { withAuth0 } from '@auth0/auth0-react';
-import Login from './Login';
-import LogoutButton from './LogoutButton';
-// import LoginButton 
+
 import Profile from './Profile';
 
 class App extends React.Component {
