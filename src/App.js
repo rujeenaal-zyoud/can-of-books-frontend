@@ -11,6 +11,7 @@ import BestBooks from './BestBooks'
 import { withAuth0 } from '@auth0/auth0-react';
 
 import Profile from './Profile';
+import Login from './Login';
 
 class App extends React.Component {
 
@@ -23,7 +24,7 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-              {this.props.auth0.isAuthenticated ? <BestBooks/>:<></>}
+              {this.props.auth0.isAuthenticated ? <BestBooks/>:<Login/>}
              {  console.log(this.props.auth0.isAuthenticated )} 
                 {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
               </Route>
