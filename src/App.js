@@ -7,7 +7,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import BestBooks from './BestBooks'
+import BestBooks from './BestBooks';
 import { withAuth0 } from '@auth0/auth0-react';
 
 import Profile from './Profile';
