@@ -7,6 +7,7 @@ import axios from 'axios';
 // import Profile from './Profile';
 import { withAuth0 } from '@auth0/auth0-react';
 import Card from 'react-bootstrap/Card';
+import BookFormModal from './BookFormModal';
 
 
 
@@ -20,9 +21,30 @@ class BestBooks extends React.Component {
       status: '',
       server: process.env.REACT_APP_PORT,
       bookArr: [],
-      showBooks: true
+      showBooks: false,
+      displayModal:false
     }
   }
+
+
+
+  showModal = async (e) => {
+
+    this.setState({
+        displayModal: true
+    })
+
+}
+hiddeneModal = async (e) => {
+
+    this.setState({
+        displayModal: false
+    })
+
+}
+
+
+
   componentDidMount = async () => {
     const user  = this.props.auth0.user.email;
     const myBooks = `${this.state.server}/books?email=${user}`;
@@ -35,18 +57,25 @@ console.log(showApiUrlbook);
 console.log(this.state.bookArr)  }
 
 
+
+
+
+
   render() {
     return(
       <>
-      
+    <button onClick={this.showModal}> Add Books</button>
+    <BookFormModal displayModal={this.state.displayModal} hiddenModal={this.hiddenModal} />
+
   
       {this.state.showBooks &&
      
         <>
           {this.state.bookArr.map((item, index) => {
             return (
+
               <>
-                <Card style={{ width: '18rem' }} key={index}>
+                <Card  key={index} style={{ width: '18rem' }}>
                   <Card.Body>
                   <Card.Img variant="top" src={item.imageUrl} />
 
