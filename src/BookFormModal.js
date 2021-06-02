@@ -116,7 +116,7 @@ class BookFormModal extends React.Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={this.hiddenModal}>
+                        <Button variant="secondary" onClick={this.props.hiddenModal}>
                             Close
                        </Button>
                         <Button variant="primary" onClick={this.addBook}>
