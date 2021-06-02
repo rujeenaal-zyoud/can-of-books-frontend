@@ -16,6 +16,7 @@ class BookFormModal extends React.Component {
           bookArr: [],
           showBooks: false,
           displayModal:false,
+          book:[],
         }
       }
     
@@ -65,18 +66,18 @@ class BookFormModal extends React.Component {
             status: this.state.status,
 
         }
-        let config = {
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-              'Content-Type': 'application/json'
-             },
-             Body :book,
+        // let config = {
+        //     mode: 'cors',
+        //     cache: 'no-cache',
+        //     credentials: 'same-origin',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //      },
+        //      Body :book,
           
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-          }
+        //     redirect: 'follow',
+        //     referrerPolicy: 'no-referrer',
+        //   }
 
           
         // console.log(bookData);
@@ -115,7 +116,7 @@ class BookFormModal extends React.Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={this.hiddenModal}>
+                        <Button variant="secondary" onClick={this.props.hiddenModal}>
                             Close
                        </Button>
                         <Button variant="primary" onClick={this.addBook}>
