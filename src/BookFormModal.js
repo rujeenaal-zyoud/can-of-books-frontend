@@ -16,6 +16,7 @@ class BookFormModal extends React.Component {
           bookArr: [],
           showBooks: false,
           displayModal:false,
+          //book:[]
         }
       }
     
@@ -53,22 +54,38 @@ class BookFormModal extends React.Component {
     
 
     addBook = async (event) => {
-         event.preventDefault();
+        event.preventDefault();
 
         const { user } = this.props.auth0;
-        const bookData = {
-            email: user.email,
+        const book = {
+            
+            email:this.props.auth0.user.email,
             name: this.state.name,
             description: this.state.description,
             imageUrl: this.state.imageUrl,
             status: this.state.status,
+
         }
+        let config = {
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+              'Content-Type': 'application/json'
+             },
+             Body :book,
+          
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+          }
+
+          
         // console.log(bookData);
-        const newBook = await axios.post(`http://localhost:3001/books`, bookData);
+        const newBook =  axios.post(`http://localhost:3001/addbooks`, book);
         this.setState({
-            bookArr: newBook.data
+            book:  await newBook.data
         });
-        console.log(newBook.data.bookArr);
+        console.log(newBook);
 
     }
     render() {
