@@ -16,7 +16,6 @@ class BookFormModal extends React.Component {
           bookArr: [],
           showBooks: false,
           displayModal:false,
-          //book:[]
         }
       }
     
