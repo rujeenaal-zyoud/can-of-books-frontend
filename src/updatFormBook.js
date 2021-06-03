@@ -3,7 +3,16 @@ import { Modal, Button, Form } from 'react-bootstrap';
 
 
 export class UpdatFormBook extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+showModel : '',
+
+
+        }
+    }
     render() {
+        console.log('this.props.showUpdateStatus',this.props.showUpdateStatus)
         return (
             <Modal show={this.props.showUpdateStatus} onHide={this.props.hiddenModal} >
                 <Modal.Header closeButton>

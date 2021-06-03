@@ -45,11 +45,11 @@ class BestBooks extends React.Component {
     })
 
   }
-  hiddeneModal = async (e) => {
+  hiddenModal = async (e) => {
 
     this.setState({
       displayModal: false,
-      //displayUpdateModal: false
+      showUpdateStatus :false,
 
     })
 
@@ -88,45 +88,49 @@ class BestBooks extends React.Component {
 
 
 
-  // showUpdateForm = (idx) => {
+  showUpdateForm = async (idx) => {
 
-  //   const newBookArr = this.state.bookArr.filter((value, index) => {
-  //     return idx === index;
-  //   });
-  //   //console.log(newBookArr)
-  //   this.setState({
-  //     showUpdateStatus: true,
+    const newBookArr =  this.state.bookArr.filter((value, index) => {
+      return idx === index;
+    });
+    console.log('Before showUpdateStatus',this.state.showUpdateStatus)
+    // console.log(newBookArr);
+    // console.log(idx)
+     await this.setState({
 
-  //     index: idx,
-  //     name: newBookArr[0].name,
-  //     description: newBookArr[0].description,
-  //     imageUrl: newBookArr[0].imageUrl,
-  //     status: newBookArr[0].status,
-  //   });
-  // }
+      showUpdateStatus: true,
+      index: idx,
+      name: newBookArr[0].name,
+      description: newBookArr[0].description,
+      imageUrl: newBookArr[0].imageUrl,
+      status: newBookArr[0].status,
+    });
+    console.log('after showUpdateStatus',this.state.showUpdateStatus)
+  }
 
  
-  // updateBook = async (e) => {
-  //    e.preventDefault();
+  updateBook = async (e) => {
+     e.preventDefault();
 
-  //   const { user } = this.props.auth0;
+    const { user } = this.props.auth0;
 
-  //   const reqBody = {
-  //     email: user.email,
-  //     imageUrl: this.state.imageUrl,
-  //     name: this.state.name,
-  //     description: this.state.description,
-  //     status: this.state.status
-  //   };
+    const reqBody = {
+      email: user.email,
+      imageUrl: this.state.imageUrl,
+      name: this.state.name,
+      description: this.state.description,
+      status: this.state.status
+      
+    };
 
-  //   const booksArray = await axios.put(`http://localhost:3001/updatebooks/${this.state.index}`, reqBody);
+    const booksArray = await axios.put(`http://localhost:3001/updatebooks/${this.state.index}`, reqBody);
 
-  //   this.setState({
-  //     bookArr: booksArray.data,
-  //     displayUpdateModal: true
+    this.setState({
+      bookArr: booksArray.data,
+      showUpdateStatus :false,
 
-  //   });
-  // }
+    });
+  }
 
 
 
@@ -135,11 +139,11 @@ class BestBooks extends React.Component {
     return (
       <>
       <>
-         {this.state.showUpdateStatus &&
+         
             <UpdatFormBook 
             displayUpdateModal={this.state.displayUpdateModal}
-            hiddenModal={this.state.hiddenModal} 
-            showUpdateStatus={this.showUpdateStatus}
+            hiddenModal={this.hiddenModal} 
+            showUpdateStatus={this.state.showUpdateStatus}
 
             name={this.state.name}
               description={this.state.description}
@@ -152,7 +156,7 @@ class BestBooks extends React.Component {
 
               updateBook={this.updateBook}
             />
-         }
+         
 
          
         </>
